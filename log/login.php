@@ -4,7 +4,7 @@ session_start();
 
 // Überprüfung ob der User schon eingeloggt ist, wenn ja wird er direkt weitergeleitet
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: ../logout.php");
+    header("location: ../log/logout.php");
     exit;
 }
 
@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Anmeldeinformationen überprüfen
     if(empty($username_err) && empty($password_err)){
         // Vorbereitung eines Auswahl-Statements
-        $sql = "SELECT id, username, password FROM users WHERE username = ?";
+        $sql = "SELECT id, username, password FROM user WHERE username = ?";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Variablen als vorberitete Statements an Parameter binden
@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;
 
                             // Weiterleitung
-                            header("location: ../config/home.php");
+                            header("location: ../home.php");
                         } else{
                             // Anzeigen einer Fehlermeldung, wenn das Passwort nicht richtig ist
                             $password_err = "Das Passwort war nicht richtig.";
