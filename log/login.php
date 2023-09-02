@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["username"] = $username;
 
                             // Weiterleitung
-                            header("location: ../home.php");
+                            header("location: ../pages/home.php");
                         } else{
                             // Anzeigen einer Fehlermeldung, wenn das Passwort nicht richtig ist
                             $password_err = "Das Passwort war nicht richtig.";
