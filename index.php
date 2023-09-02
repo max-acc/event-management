@@ -25,6 +25,7 @@ require_once "config/config.php";
 
         <!--Section Space-------------------------------------------------------------->
         <section class="space">
+          <a href="log/login.php"><button type="button" name="button">Login</button></a> 
         </section>
 
 
