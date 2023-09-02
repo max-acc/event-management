@@ -14,9 +14,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $username_err = "<p>Bitte geben Sie einen Usernamen ein.</p>";
     } else{
         // Vorbereitung für Auswahl von Datenbank
-        $sql = "SELECT id FROM users WHERE username = ?";
-
+        $sql = "SELECT id FROM user WHERE username = ?";
+        echo "hi3 " . $username;
         if($stmt = mysqli_prepare($link, $sql)){
+            echo "hi3 " . $username;
             // Vorbereitete Statements an Parameter binden
             mysqli_stmt_bind_param($stmt, "s", $param_username);
 
@@ -65,7 +66,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
 
         // Vorbereitung eines Eingabe-Statements
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+        $sql = "INSERT INTO user (username, password) VALUES (?, ?)";
 
         if($stmt = mysqli_prepare($link, $sql)){
             // Variablen als vorberitete Statements an Parameter binden
@@ -80,6 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Weiterleitung zu login.php
                 header("location: login.php");
             } else{
+                echo "hi " . $username;
                 echo "<p>Etwas ist schief gelaufen. Probieren Sie es später nochmal.</p>";
             }
 
@@ -96,40 +98,34 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!DOCTYPE html>
 
 <html lang="de">
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>Plan-Registrieren</title>
-  <link rel="stylesheet"  href="../css/log.css"  type="text/css">
-  <link rel="stylesheet"  href="../css/style.css"  type="text/css">
-  <meta charset ="utf-8">
-  <link rel="shortcut icon" href="../images/icon.png" />
-</head>
-<body>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Registrieren</title>
+    <meta charset ="utf-8">
+  </head>
 
 
-<form class="log" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-  <h1>Registrieren</h1>
+  <body>
+    <form class="log" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+      <h1>Registrieren</h1>
 
-  <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-    <input type="text"  maxlength="250" name="username" placeholder="Usernamen eingeben" value="<?php echo $username; ?>"><br><br>
-    <span class="help-block"><?php echo $username_err; ?></span>
-  </div>
+      <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+        <input type="text"  maxlength="250" name="username" placeholder="Usernamen eingeben" value="<?php echo $username; ?>"><br><br>
+        <span class="help-block"><?php echo $username_err; ?></span>
+      </div>
 
-  <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-    <input type="password"  maxlength="250" name="password" placeholder="Passwort eingeben" value="<?php echo $password; ?>"><br>
-    <span class="help-block"><?php echo $password_err; ?></span>
-  </div>
+      <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+        <input type="password"  maxlength="250" name="password" placeholder="Passwort eingeben" value="<?php echo $password; ?>"><br>
+        <span class="help-block"><?php echo $password_err; ?></span>
+      </div>
 
-  <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-    <input type="password"  maxlength="250" name="confirm_password" placeholder="Passwort wiederholen" value="<?php echo $confirm_password; ?>"><br><br>
-    <span class="help-block"><?php echo $confirm_password_err; ?></span>
-  </div>
-
-  <div>
-    <input type="submit" value="Abschicken">
-  </div>
-</form>
-
-
-</body>
+      <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+        <input type="password"  maxlength="250" name="confirm_password" placeholder="Passwort wiederholen" value="<?php echo $confirm_password; ?>"><br><br>
+        <span class="help-block"><?php echo $confirm_password_err; ?></span>
+      </div>
+      <div>
+        <input type="submit" value="Abschicken">
+      </div>
+    </form>
+  </body>
 </html>

@@ -93,8 +93,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   <head>
     <meta charset="utf-8">
     <title>Login</title>
-    <link rel="stylesheet"  href="../css/log.css"  type="text/css">
-    <link rel="stylesheet"  href="../css/style.css"  type="text/css">
     <meta charset ="utf-8">
   </head>
   <body>
