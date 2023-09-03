@@ -153,33 +153,38 @@
                 <td>
                   <?php echo $description;?>
                 </td>
+                <?php col1: ?>
                 <td>
-                  <?php if ($memberCount < 1) {goto endOfTable;} ?>
+                  <?php if ($memberCount < 1) {goto col2;} ?>
                   <select class="member1" name="member1_<?php echo $indexCount;?>" id="eventSubmit">
                     <option value="database"><?php echo $member_01;?></option>
                     <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
                   </select>
+                  <?php col2: ?>
                 </td>
                 <td>
-                  <?php if ($memberCount < 2) {goto endOfTable;} ?>
+                  <?php if ($memberCount < 2) {goto col3;} ?>
                   <select class="member2" name="member2_<?php echo $indexCount;?>" id="eventSubmit">
                     <option value="database"><?php echo $member_02;?></option>
                     <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
                   </select>
+                  <?php col3: ?>
                 </td>
                 <td>
-                  <?php if ($memberCount < 3) {goto endOfTable;} ?>
+                  <?php if ($memberCount < 3) {goto col4;} ?>
                   <select class="member3" name="member3_<?php echo $indexCount;?>" id="eventSubmit">
                     <option value="database"><?php echo $member_03;?></option>
                     <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
                   </select>
+                  <?php col4: ?>
                 </td>
                 <td>
-                  <?php if ($memberCount < 4) {goto endOfTable;} ?>
+                  <?php if ($memberCount < 4) {goto col5;} ?>
                   <select class="member4" name="member4_<?php echo $indexCount;?>" id="eventSubmit">
                     <option value="database"><?php echo $member_04;?></option>
                     <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
                   </select>
+                  <?php col5: ?>
                 </td>
                 <td>
                   <?php if ($memberCount < 5) {goto endOfTable;} ?>
@@ -187,8 +192,8 @@
                     <option value="database"><?php echo $member_05;?></option>
                     <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
                   </select>
-                </td>
                 <?php endOfTable: ?>
+                </td>
                 <td>
                   Progressbar
                 </td>
