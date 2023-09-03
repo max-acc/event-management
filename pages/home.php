@@ -21,16 +21,26 @@ require_once "../config/config.php";
       <?php require_once("../css/style.css"); ?>
     </style>
   </head>
+
+
   <body>
     <header>
-      <?php require_once "../base/header.php"; ?>
+      <h1>Aktuelle Veranstaltungen</h1>
+      <a href="../log/logout.php">
+        Logout
+      </a>
     </header>
 
-    <section>
-      Current events
-      <a href="event.php"><button type="button" name="button"></button></a>
-
-    </section>
+    <div class="home">
+      <ul>
+        <li>
+          <div class="">
+            <a href="event.php">Event</a>
+          </div>
+        </li>
+        <li><a href="event.php">Event</a></li>
+      </ul>
+    </div>
 
     <footer>
 

@@ -1,15 +1,3 @@
-#wrapper {
-	width: 100%;
-	font-size: 1em;
-	font-family: 'roboto', arial, sans-serif;
-}
-
-h1, h2, h3, p, a, th, td, span {
-  color: #968A87;
-  text-decoration: none;
-	font-family: 'roboto', arial, sans-serif;
-}
-
 html {
 	scroll-behavior: smooth;
 	margin: 0;
@@ -17,10 +5,135 @@ html {
 }
 
 body {
-	background-color: #282828;
-  background-color: #151515;
+  background-color: #B0B0B0;
   margin: 0;
   padding: 0;
 	min-width: 100vw;
+}
 
+header  {
+  height: 150px;
+}
+
+header h1 {
+  margin: 0;
+  margin-top: 30px;
+  text-align: center;
+  height: 50px;
+  font-size: 50px;
+}
+
+header a {
+  position: relative;
+  float:  right;
+  text-align: center;
+  font-size: 18px;
+  margin-top: -50px;
+  margin-right: 40px;
+  background: #1E1C1B;
+  border: 2px solid #1E1C1B;
+  border-radius: 15px;
+  width: 100px;
+  outline: none;
+  padding: 16px 40px;
+  color: white;
+  transition: 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+header a:hover {
+  background: #2ecc71;
+  border-color: #2ecc71;
+  color: #1E1C1B;
+}
+
+.index div {
+  min-width: 300px;
+  width: auto;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: #1E1C1B;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.index div h1 {
+  color: #968A87;
+  font-size: 3em;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+.index img {
+  width: 200px;
+  padding: 50px;
+}
+
+.index a{
+  border:0;
+  background: none;
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #2ecc71;
+  padding: 14px 40px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  width: 144px;
+}
+
+.index a:hover{
+  background: #2ecc71;
+}
+
+.home {
+  width: 80%;
+  margin: auto;
+  background: #1E1C1B;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.home h1 {
+  text-align: left;
+  width: auto;
+  padding-top: 20px;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.home {
+  text-align: left;
+  width: 100%;
+  min-height: 100px;
+  height: auto;
+}
+
+.home ul {
+  text-align: center;
+}
+
+.home ul li {
+  display: inline;
+  width: 284px;
+  height: 200px;
+}
+
+.home ul li div {
+  width: 284px;
+  height: 200px;
+  margin: 20px;
+  border-radius: 10px;
+  transition: all 0.5s;
 }

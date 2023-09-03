@@ -11,29 +11,28 @@ require_once "config/config.php";
   <!--- Head ------------------------------------------------------------------->
     <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-      <meta charset="utf-8">
-      <title>Plan</title>
-      <link rel="stylesheet"  href="css/style.css"  type="text/css">
+      <meta charset ="utf-8">
+      <title>Main Page</title>
+      <style>
+        <?php require_once("css/style.css"); ?>
+      </style>
     </head>
 
-    <body style="">
+    <body class="index">
+
       <div>
-        <!--Header--------------------------------------------------------------------->
-        <header>
-          <p>hello</p>
-        </header>
+        <h1>Event Management Tool</h1>
+        <img src="img/logo.png" alt="" style="">
 
 
         <!--Section Space-------------------------------------------------------------->
         <section class="space">
-          <p>hello</p>
-          <a href="log/login.php"><button type="button" name="button">Login</button></a>
+          <a href="log/login.php">Login</a>
         </section>
 
 
         <!--Footer--------------------------------------------------------------------->
         <footer>
-          <?php require_once "base/footer.php"; ?>
         </footer>
       </div>
     </body>
