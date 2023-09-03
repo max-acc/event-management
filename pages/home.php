@@ -14,12 +14,16 @@ require_once "../config/config.php";
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset ="utf-8">
     <title>Home</title>
+    <style>
+      <?php require_once("../css/style.css"); ?>
+    </style>
   </head>
   <body>
     <header>
-
+      <?php require_once "../base/header.php"; ?>
     </header>
 
     <section>

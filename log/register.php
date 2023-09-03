@@ -99,32 +99,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="de">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Registrieren</title>
     <meta charset ="utf-8">
+    <title>Registrieren</title>
+    <style>
+      <?php require_once("../css/style_log.css"); ?>
+    </style>
   </head>
 
 
   <body>
-    <form class="log" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-      <h1>Registrieren</h1>
+    <div class="log">
+      <form class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <h1>Registrieren</h1>
 
-      <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-        <input type="text"  maxlength="250" name="username" placeholder="Usernamen eingeben" value="<?php echo $username; ?>"><br><br>
-        <span class="help-block"><?php echo $username_err; ?></span>
-      </div>
+        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+          <input type="text"  maxlength="250" name="username" placeholder="Usernamen eingeben" value="<?php echo $username; ?>"><br><br>
+          <span class="help-block"><?php echo $username_err; ?></span>
+        </div>
 
-      <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-        <input type="password"  maxlength="250" name="password" placeholder="Passwort eingeben" value="<?php echo $password; ?>"><br>
-        <span class="help-block"><?php echo $password_err; ?></span>
-      </div>
+        <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+          <input type="password"  maxlength="250" name="password" placeholder="Passwort eingeben" value="<?php echo $password; ?>"><br>
+          <span class="help-block"><?php echo $password_err; ?></span>
+        </div>
 
-      <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
-        <input type="password"  maxlength="250" name="confirm_password" placeholder="Passwort wiederholen" value="<?php echo $confirm_password; ?>"><br><br>
-        <span class="help-block"><?php echo $confirm_password_err; ?></span>
-      </div>
-      <div>
-        <input type="submit" value="Abschicken">
-      </div>
-    </form>
+        <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+          <input type="password"  maxlength="250" name="confirm_password" placeholder="Passwort wiederholen" value="<?php echo $confirm_password; ?>"><br><br>
+          <span class="help-block"><?php echo $confirm_password_err; ?></span>
+        </div>
+        <div>
+          <input type="submit" value="Registrieren">
+        </div>
+      </form>
+    </div>
   </body>
 </html>

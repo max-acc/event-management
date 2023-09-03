@@ -120,12 +120,13 @@
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset ="utf-8">
     <title>Event</title>
   </head>
   <body>
     <header>
-
+      <?php require_once "../base/header.php"; ?>
     </header>
 
     <section>
@@ -141,7 +142,7 @@
             while ($row = $result->fetch_assoc()) {
               $tableRows  += 1;
               $indexCount   = $row["indexCounter"];
-              $description  = $row["description"];
+              $category     = $row["category"];
               $memberCount  = $row["numberOfMembers"];
               $member_01    = $row["member1"];
               $member_02    = $row["member2"];
@@ -151,7 +152,7 @@
               ?>
               <tr class="<?php echo $indexCount;?>">
                 <td>
-                  <?php echo $description;?>
+                  <?php echo $category;?>
                 </td>
                 <?php col1: ?>
                 <td>

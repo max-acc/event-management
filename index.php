@@ -10,22 +10,24 @@ require_once "config/config.php";
  <html lang="de" dir="ltr">
   <!--- Head ------------------------------------------------------------------->
     <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
       <meta charset="utf-8">
       <title>Plan</title>
       <link rel="stylesheet"  href="css/style.css"  type="text/css">
     </head>
 
-    <body>
-      <div id="wrapper">
+    <body style="">
+      <div>
         <!--Header--------------------------------------------------------------------->
         <header>
-          <?php require_once "base/header.php"; ?>
+          <p>hello</p>
         </header>
 
 
         <!--Section Space-------------------------------------------------------------->
         <section class="space">
-          <a href="log/login.php"><button type="button" name="button">Login</button></a> 
+          <p>hello</p>
+          <a href="log/login.php"><button type="button" name="button">Login</button></a>
         </section>
 
 
