@@ -18,64 +18,101 @@
   $tableRows  = 0;
   $tableCols  = 5;
 
+  $memberContent = array();
+  $sql = "";
 
-
-  if (isset($_POST['submit'])) {
+  //if (isset($_POST['submit'])) {
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
     for ($i=0; $i < 3; $i++) {
+      $setVar = "";
+      $changeDetection = false;
+      $username = $_SESSION["username"];
+
       $memberName = 'member1_' . $i;
       if (!empty($_POST[$memberName])) {
         $selected = $_POST[$memberName];
-        echo $selected;
-        // code...
+        $memberContent[] = $selected;
+        if ($selected == "changeEntry") {
+          $changeDetection = true;
+          $setVar .= "SET member1 = '$username'";
+        }
       }
+      $memberName = 'member2_' . $i;
+      if (!empty($_POST[$memberName])) {
+        $selected = $_POST[$memberName];
+        $memberContent[] = $selected;
+        if ($selected == "changeEntry") {
+          $changeDetection = true;
+          if (empty($setVar)) {
+            $setVar .= "SET member2 = '$username'";
+          }else {
+            $setVar .= ", member2 = '$username'";
+          }
+        }
+      }
+      $memberName = 'member3_' . $i;
+      if (!empty($_POST[$memberName])) {
+        $selected = $_POST[$memberName];
+        $memberContent[] = $selected;
+        if ($selected == "changeEntry") {
+          $changeDetection = true;
+          if (empty($setVar)) {
+            $setVar .= "SET member3 = '$username'";
+          }else {
+            $setVar .= ", member3 = '$username'";
+          }
+        }
+      }
+      $memberName = 'member4_' . $i;
+      if (!empty($_POST[$memberName])) {
+        $selected = $_POST[$memberName];
+        $memberContent[] = $selected;
+        if ($selected == "changeEntry") {
+          $changeDetection = true;
+          if (empty($setVar)) {
+            $setVar .= "SET member4 = '$username'";
+          }else {
+            $setVar .= ", member4 = '$username'";
+          }
+        }
+      }
+      $memberName = 'member5_' . $i;
+      if (!empty($_POST[$memberName])) {
+        $selected = $_POST[$memberName];
+        $memberContent[] = $selected;
+        if ($selected == "changeEntry") {
+          $changeDetection = true;
+          if (empty($setVar)) {
+            $setVar .= "SET member5 = '$username'";
+          }else {
+            $setVar .= ", member5 = '$username'";
+          }
+        }
+      }
+      //$setVar     = " SET member1 = `$memberContent[0]`, member2 = `$memberContent[1]`, member3 = `$memberContent[2]`, member4 = `$memberContent[3]`, member5 = `$memberContent[4]`";
+      if ($changeDetection) {
+        $condition  = " WHERE indexCounter = " . $i;
+        $sql        .= "UPDATE " . $eventName . " " . $setVar . $condition . " ";
+      }
+
     }
-    /*
-    if (!empty($_POST['member1_0'])) {
-      $selected = $_POST['member1_0'];
-      echo $selected;
-      // code...
+    echo $sql;
+    if($stmt = mysqli_prepare($link, $sql)){
+      echo "hello1";
+
+        // Versuch das vorbereitete Statement auszuführen
+        if(mysqli_stmt_execute($stmt)){
+            // Weiterleitung zu login.php
+            header("location: #");
+        } else{
+            echo "hi " . $username;
+            echo "<p>Etwas ist schief gelaufen. Probieren Sie es später nochmal.</p>";
+        }
+
+        // Schließung des Statements
+        mysqli_stmt_close($stmt);
     }
-    else {
-      echo "select please";
-    }
-    if (!empty($_POST['member1_1'])) {
-      $selected = $_POST['member1_1'];
-      echo $selected;
-      // code...
-    }
-    else {
-      echo "select please";
-    }
-    if (!empty($_POST['member1_2'])) {
-      $selected = $_POST['member1_2'];
-      echo $selected;
-    }
-    else {
-      echo "select please";
-    }*/
   }
-
-  /*
-
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    //$param_member01 = trim($_POST["member01_1"]);
-    //echo $param_member01;
-
-    $member = filter_input(INPUT_POST, 'member01_1', FILTER_SANITIZE_STRING);
-    //$member = isset($_POST{"member01_1"});
-
-    echo "string";
-    echo $member;
-    echo "hello";
-
-
-    for ($i=0; $i < $tableRows; $i++) {
-
-      $sql = "UPDATE " . $eventName . " SET member1 = `` WHERE indexCounter = `" . $i;
-    }
-
-  }*/
 
 ?>
 
