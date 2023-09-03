@@ -35,10 +35,24 @@ require_once "../config/config.php";
       <ul>
         <li>
           <div class="">
-            <a href="event.php">Event</a>
+            <img src="../img/stock_img.png" alt="">
+            <h2>Eventname</h2>
+            <div class="description">
+              <p>Beschreibung</p>
+            </div>
+            <a href="event.php">Zum Event</a>
           </div>
         </li>
-        <li><a href="event.php">Event</a></li>
+        <li>
+          <div class="">
+            <img src="../img/stock_img.png" alt="">
+            <h2>Eventname</h2>
+            <div class="description">
+              <p>Beschreibung</p>
+            </div>
+            <a href="event.php">Zum Event</a>
+          </div>
+        </li>
       </ul>
     </div>
 
