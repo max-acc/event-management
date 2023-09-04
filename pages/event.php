@@ -135,11 +135,11 @@
       </a>
     </header>
 
-    <section>
-      <?php
-        echo $eventName;
-      ?>
-      <p>Current events</p>
+    <div class="event" style="color: white;">
+      <h1>
+        <?php echo $eventName;?>
+      </h1>
+
       <form class="eventForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
         <table>
           <?php
@@ -157,7 +157,7 @@
               $member_05    = $row["member5"];
               ?>
               <tr class="<?php echo $indexCount;?>">
-                <td>
+                <td class="event_cat">
                   <?php echo $category;?>
                 </td>
                 <?php col1: ?>
@@ -214,9 +214,7 @@
         </table>
         <input type="submit" value="Abschicken" name="submit">
       </form>
-      <a href="home.php">Zurück</a>
-      <?php echo $tableRows; ?>
-    </section>
+    </div>
 
     <footer>
 

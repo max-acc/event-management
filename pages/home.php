@@ -53,6 +53,10 @@ require_once "../config/config.php";
             <a href="event.php">Zum Event</a>
           </div>
         </li>
+        <li>
+          <div class="add_event">
+          </div>
+        </li>
       </ul>
     </div>
 
