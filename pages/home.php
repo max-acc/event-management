@@ -55,6 +55,7 @@ require_once "../config/config.php";
         </li>
         <li>
           <div class="add_event">
+            <p>+</p>
           </div>
         </li>
       </ul>
