@@ -9,9 +9,10 @@
   }
   require_once "../config/config.php";
 
-  $eventName = "`test-event-1`";
+  $eventDB = "`events`";
+  $eventDBname = "`event_0`";
 
-  $sqlEvent = "SELECT * FROM " . $eventName;
+  $sqlEvent = "SELECT * FROM " . $eventDBname;
 
   $eventResult = mysqli_query($link, $sqlEvent);
 
@@ -92,7 +93,7 @@
       //$setVar     = " SET member1 = `$memberContent[0]`, member2 = `$memberContent[1]`, member3 = `$memberContent[2]`, member4 = `$memberContent[3]`, member5 = `$memberContent[4]`";
       if ($changeDetection) {
         $condition  = " WHERE indexCounter = " . $i;
-        $sql        .= "UPDATE " . $eventName . " " . $setVar . $condition . " ";
+        $sql        .= "UPDATE " . $eventDBname . " " . $setVar . $condition . " ";
       }
 
     }
@@ -137,7 +138,11 @@
 
     <div class="event" style="color: white;">
       <h1>
-        <?php echo $eventName;?>
+        <?php
+        if ($result = $link->query("SELECT * FROM " . $eventDB . "WHERE event_index = 0")) {
+          $row = $result->fetch_assoc();
+          echo $row["event_name"];
+        } ?>
       </h1>
 
       <form class="eventForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">

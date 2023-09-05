@@ -139,6 +139,12 @@ header a:hover {
   box-shadow: 0 5px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
+.home ul li div p {
+  text-align: justify;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .home ul li .add_event {
   background: #A0A0A0;
   border: -4px solid #1E1C1B;
@@ -154,6 +160,7 @@ header a:hover {
   color: #1E1C1B;
   font-size: 100px;
   font-weight: bolder;
+  text-align: center;
 }
 
 .home ul li div img {
