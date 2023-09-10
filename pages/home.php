@@ -31,6 +31,9 @@ $eventDB = "`events`";
       <a href="../log/logout.php">
         Logout
       </a>
+      <a href="../log/password.php">
+        Passwort ändern
+      </a>
     </header>
 
     <div class="home">
