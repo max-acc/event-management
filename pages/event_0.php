@@ -97,9 +97,7 @@
       }
 
     }
-    echo $sql;
     if($stmt = mysqli_prepare($link, $sql)){
-      echo "hello1";
 
         // Versuch das vorbereitete Statement auszuführen
         if(mysqli_stmt_execute($stmt)){
