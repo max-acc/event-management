@@ -52,7 +52,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Versuch das vorbereitete Statement auszuführen
             if(mysqli_stmt_execute($stmt)){
                 // Weiterleitung zu login.php
-                //header("location: login.php");
+                header("location: ../pages/home.php");
             } else{
                 echo "hi " . $username;
                 echo "<p>Etwas ist schief gelaufen. Probieren Sie es später nochmal.</p>";
