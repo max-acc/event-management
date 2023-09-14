@@ -4,7 +4,7 @@ session_start();
 
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: index.php");
+    header("location: ../index.php");
     exit;
 }
 require_once "../config/config.php";
@@ -30,6 +30,9 @@ $eventDB = "`events`";
       <h1>Aktuelle Veranstaltungen</h1>
       <a href="../log/logout.php">
         Logout
+      </a>
+      <a href="../log/password.php">
+        Passwort ändern
       </a>
     </header>
 

@@ -10,7 +10,7 @@
   require_once "../config/config.php";
 
   $eventDB = "`events`";
-  $eventDBname = "`event_0`";
+  $eventDBname = "`event_1`";
 
   $sqlEvent = "SELECT * FROM " . $eventDBname;
 
@@ -137,7 +137,7 @@
     <div class="event" style="color: white;">
       <h1>
         <?php
-        if ($result = $link->query("SELECT * FROM " . $eventDB . "WHERE event_index = 0")) {
+        if ($result = $link->query("SELECT * FROM " . $eventDB . "WHERE event_index = 1")) {
           $row = $result->fetch_assoc();
           echo $row["event_name"];
         } ?>
