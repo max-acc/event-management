@@ -19,12 +19,22 @@
   $tableRows  = 0;
   $tableCols  = 5;
 
+  $sql_row = "SELECT * FROM " . $eventDBname;
+  if ($result = mysqli_query($link, $sql_row)) {
+
+    // Return the number of rows in result set
+    $tableRows = mysqli_num_rows($result);
+
+    // Display result
+    printf("Total rows in this table :  %d\n", $tableRows);
+  }
+
   $memberContent = array();
   $sql = "";
 
   //if (isset($_POST['submit'])) {
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-    for ($i=0; $i < 3; $i++) {
+    for ($i=0; $i < $tableRows; $i++) {
       $setVar = "";
       $changeDetection = false;
       $username = $_SESSION["username"];
