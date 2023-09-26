@@ -1,5 +1,5 @@
 <?php
-  // Initialize the session
+  // Starting the session
   session_start();
 
   // Check if the user is logged in, if not then redirect him to login page
@@ -7,18 +7,25 @@
       header("location: ../index.php");
       exit;
   }
+
+  // Including config file
   require_once "../config/config.php";
 
+  // Storing the database names
   $eventDB = "`events`";
   $eventDBname = "`event_0`";
 
+  // Store SQL statement for database
   $sqlEvent = "SELECT * FROM " . $eventDBname;
 
+  // Fetch event database
   $eventResult = mysqli_query($link, $sqlEvent);
 
+  // Set defaults for table format
   $tableRows  = 0;
   $tableCols  = 5;
 
+  // Count number of rows in the table
   $sql_row = "SELECT * FROM " . $eventDBname;
   if ($result = mysqli_query($link, $sql_row)) {
 
@@ -26,19 +33,21 @@
     $tableRows = mysqli_num_rows($result);
 
     // Display result
-    printf("Total rows in this table :  %d\n", $tableRows);
+    //printf("Total rows in this table :  %d\n", $tableRows);
   }
 
   $memberContent = array();
   $sql = "";
 
-  //if (isset($_POST['submit'])) {
+  // Processing of data when form is posted
   if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Going through every row of the table for creating a statement
     for ($i=0; $i < $tableRows; $i++) {
       $setVar = "";
       $changeDetection = false;
       $username = $_SESSION["username"];
 
+      // Create post statement for first col
       $memberName = 'member1_' . $i;
       if (!empty($_POST[$memberName])) {
         $selected = $_POST[$memberName];
@@ -48,6 +57,8 @@
           $setVar .= "SET member1 = '$username'";
         }
       }
+
+      // Create post statement for second col
       $memberName = 'member2_' . $i;
       if (!empty($_POST[$memberName])) {
         $selected = $_POST[$memberName];
@@ -61,6 +72,8 @@
           }
         }
       }
+
+      // Create post statement for third col
       $memberName = 'member3_' . $i;
       if (!empty($_POST[$memberName])) {
         $selected = $_POST[$memberName];
@@ -74,6 +87,8 @@
           }
         }
       }
+
+      // Create post statement for fourth col
       $memberName = 'member4_' . $i;
       if (!empty($_POST[$memberName])) {
         $selected = $_POST[$memberName];
@@ -87,6 +102,8 @@
           }
         }
       }
+
+      // Create post statement for fifth col
       $memberName = 'member5_' . $i;
       if (!empty($_POST[$memberName])) {
         $selected = $_POST[$memberName];
@@ -100,6 +117,8 @@
           }
         }
       }
+
+      // Create post statement for a row
       //$setVar     = " SET member1 = `$memberContent[0]`, member2 = `$memberContent[1]`, member3 = `$memberContent[2]`, member4 = `$memberContent[3]`, member5 = `$memberContent[4]`";
       if ($changeDetection) {
         $condition  = " WHERE indexCounter = " . $i;
@@ -107,27 +126,28 @@
       }
 
     }
-    if($stmt = mysqli_prepare($link, $sql)){
 
-        // Versuch das vorbereitete Statement auszuführen
+    // Preparing the input statement
+    if($stmt = mysqli_prepare($link, $sql)){
+        // Try to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
-            // Weiterleitung zu login.php
+            // Redirection ...
             header("location: #");
         } else{
             echo "hi " . $username;
             echo "<p>Etwas ist schief gelaufen. Probieren Sie es später nochmal.</p>";
         }
 
-        // Schließung des Statements
+        // Closing the statement
         mysqli_stmt_close($stmt);
-    }
+     }
   }
-
 ?>
 
 
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
+  <!--- Head ------------------------------------------------------------------>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset ="utf-8">
@@ -136,7 +156,9 @@
       <?php require_once("../css/style.css"); ?>
     </style>
   </head>
+
   <body>
+    <!--- Header -------------------------------------------------------------->
     <header>
       <h1>Aktuelle Veranstaltungen</h1>
       <a href="home.php">
@@ -144,6 +166,7 @@
       </a>
     </header>
 
+    <!--- Title --------------------------------------------------------------->
     <div class="event" style="color: white;">
       <h1>
         <?php
@@ -153,6 +176,7 @@
         } ?>
       </h1>
 
+      <!--- Show the table ---------------------------------------------------->
       <form class="eventForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
         <table>
           <?php
@@ -228,9 +252,5 @@
         <input type="submit" value="Abschicken" name="submit">
       </form>
     </div>
-
-    <footer>
-
-    </footer>
   </body>
 </html>

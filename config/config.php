@@ -1,19 +1,19 @@
 <?php
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
+  /* Database credentials. Assuming you are running MySQL
+  server with default setting (user 'root' with no password) */
 
-//Definitionen von Server-Variablen
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'event-management');
+  // Definition of Server variables / credentials
+  define('DB_SERVER', 'localhost');
+  define('DB_USERNAME', 'root');
+  define('DB_PASSWORD', '');
+  define('DB_NAME', 'event-management');
 
-// Versuch mit Datenbank zu verbinden
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+  // Trying to connect with the database
+  $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
-// Überprüfung der Verbindung
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-    echo "could not connect";
-}
+  // Checking the connection
+  if($link === false){
+    die("ERROR M-400: An error occured while establishing a connectionCould not connect. " . mysqli_connect_error());
+    echo "ERROR M-400: Could not connect!";
+  }
 ?>
