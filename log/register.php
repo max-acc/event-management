@@ -109,7 +109,7 @@
     <div class="log">
       <form class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <h1>Registrieren</h1>
-        <!--- Main Page ----------------------------------------------------------->
+        <!--- Username input field -------------------------------------------->
         <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
           <input type="text"  maxlength="250" name="username" placeholder="Usernamen eingeben" value="<?php echo $username; ?>"><br><br>
           <span class="help-block"><?php echo $username_err; ?></span>
