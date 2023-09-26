@@ -1,5 +1,5 @@
 <?php
-  // Staring the session
+  // Starting the session
   session_start();
 
   // Checking if the user is already logged in. If true: redirection to logout

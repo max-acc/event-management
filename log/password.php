@@ -1,21 +1,23 @@
 <?php
-// Initialize the session
-session_start();
+  // Starting the session
+  session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+  // Checking if the user is already logged in. If true: redirection to logout
+  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: ../index.php");
     exit;
-}
-require_once "../config/config.php";
+  }
 
-// Definition von Variablen und initialisierung mit leeren Werten
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+  // Including config file
+  require_once "../config/config.php";
 
-// Verarbeitung von Formulardaten beim Absenden des Formulars
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Bestätigung des Passworts
+  // Definition for variables with emptyl values
+  $username = $password = $confirm_password = "";
+  $username_err = $password_err = $confirm_password_err = "";
+
+  // Processing of data when form is posted
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
+    // Check the password
     if(empty(trim($_POST["password"]))){
         $password_err = "<p>Bitte geben Sie ein Passwort ein.</p>";
     } elseif(strlen(trim($_POST["password"])) < 5){
@@ -24,7 +26,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $password = trim($_POST["password"]);
     }
 
-    // Bestätigung des bestätigten Passworts
+    // Confirming the password
     if(empty(trim($_POST["confirm_password"]))){
         $confirm_password_err = "<p>Bitte wiederholen Sie ihr Passwort.</p>";
     } else{
@@ -34,43 +36,40 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
-    // Überprüfung auf Eingabefehler bevor Daten zur Datenbank geschickt werden
+    // Check the input for errors before sending it to the database
     if(empty($password_err) && empty($confirm_password_err)){
 
-        // Vorbereitung eines Eingabe-Statements
+        // Preparing the input statement
         $sql = "UPDATE user SET password = '$password' WHERE username = " . $_SESSION["username"];
         $param_password = password_hash($password, PASSWORD_DEFAULT);
         $sql = "UPDATE user SET password = '$param_password' WHERE id = " . $_SESSION["id"];;
 
         if($stmt = mysqli_prepare($link, $sql)){
-            // Variablen als vorberitete Statements an Parameter binden
+            // Bind prepared varialbes as statement to parameters
             //mysqli_stmt_bind_param($stmt, "ss", $param_password);
 
-            // Parameter setzen
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Generierung des Passwort Hashes
+            // Set password parameters
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Generating a password hash
 
-            // Versuch das vorbereitete Statement auszuführen
+            // Try to execute the prepared StatementVersuch das vorbereitete Statement auszuführen
             if(mysqli_stmt_execute($stmt)){
-                // Weiterleitung zu login.php
+                // Redirection ...
                 header("location: ../pages/home.php");
             } else{
                 echo "hi " . $username;
                 echo "<p>Etwas ist schief gelaufen. Probieren Sie es später nochmal.</p>";
             }
-
-
-            // Schließung des Statements
+            // Closing the statement
             mysqli_stmt_close($stmt);
         }
     }
-
-
-}
+  }
 ?>
 
 <!DOCTYPE html>
 
 <html lang="de">
+  <!--- Head ------------------------------------------------------------------>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset ="utf-8">
@@ -80,21 +79,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </style>
   </head>
 
-
   <body>
+    <!--- Main Page ----------------------------------------------------------->
     <div class="log">
       <form class="" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <h1>Passwort ändern</h1>
 
+        <!--- Password input field 1 ------------------------------------------>
         <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
           <input type="password"  maxlength="250" name="password" placeholder="Passwort eingeben" value="<?php echo $password; ?>"><br>
           <span class="help-block"><?php echo $password_err; ?></span>
         </div>
 
+        <!--- Password input field 2 ------------------------------------------>
         <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
           <input type="password"  maxlength="250" name="confirm_password" placeholder="Passwort wiederholen" value="<?php echo $confirm_password; ?>"><br><br>
           <span class="help-block"><?php echo $confirm_password_err; ?></span>
         </div>
+        <!--- Submit and redirection button ----------------------------------->
         <div>
           <input type="submit" value="Registrieren">
         </div>
