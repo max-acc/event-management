@@ -1,20 +1,24 @@
 <?php
-// Initialize the session
-session_start();
+  // Starting the session
+  session_start();
 
-// Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+  // Check if the user is logged in, if not then redirect him to login page
+  if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: ../index.php");
     exit;
-}
-require_once "../config/config.php";
+  }
 
-$eventDB = "`events`";
+  // Including config file
+  require_once "../config/config.php";
+
+  // Store main database
+  $eventDB = "`events`";
 ?>
 
 
 <!DOCTYPE html>
 <html lang="de" dir="ltr">
+  <!--- Head ------------------------------------------------------------------>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta charset ="utf-8">
@@ -24,8 +28,8 @@ $eventDB = "`events`";
     </style>
   </head>
 
-
   <body>
+    <!--- Main Page ----------------------------------------------------------->
     <header>
       <h1>Aktuelle Veranstaltungen</h1>
       <a href="../log/logout.php">
@@ -38,6 +42,7 @@ $eventDB = "`events`";
 
     <div class="home">
       <ul>
+        <!--- First event ----------------------------------------------------->
         <?php
         if ($result = $link->query("SELECT * FROM " . $eventDB . "WHERE event_index = 0")) {
           $row = $result->fetch_assoc();
@@ -55,7 +60,9 @@ $eventDB = "`events`";
             <a href="event_0.php">Zum Event</a>
           </div>
         </li>
-      <?php } EndEvent0:?>
+        <?php } EndEvent0:?>
+
+        <!--- Second Event ---------------------------------------------------->
         <?php
         if ($result = $link->query("SELECT * FROM " . $eventDB . "WHERE event_index = 1")) {
           $row = $result->fetch_assoc();
@@ -73,7 +80,9 @@ $eventDB = "`events`";
             <a href="event_1.php">Zum Event</a>
           </div>
         </li>
-      <?php } EndEvent1:?>
+        <?php } EndEvent1:?>
+
+        <!--- Third event ----------------------------------------------------->
         <?php
         if ($result = $link->query("SELECT * FROM " . $eventDB . "WHERE event_index = 2")) {
           $row = $result->fetch_assoc();
@@ -92,6 +101,8 @@ $eventDB = "`events`";
           </div>
         </li>
         <?php } EndEvent2:?>
+
+        <!--- Add event ------------------------------------------------------->
         <li>
           <div class="add_event">
             <p>+</p>
@@ -99,9 +110,5 @@ $eventDB = "`events`";
         </li>
       </ul>
     </div>
-
-    <footer>
-
-    </footer>
   </body>
 </html>
