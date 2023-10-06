@@ -157,7 +157,14 @@
       <form class="eventForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
         <table>
           <?php
-          if ($result = $link->query($sqlEvent)) {
+          if (($result = $link->query($sqlEvent)) && ($result_1 = $link->query("SELECT * FROM " . $eventDB . "WHERE event_index = 1"))) {
+            $event_overwrite = false;
+            $temp_row = $result_1->fetch_assoc();
+            if ($temp_row["event_overwrite"] == 1) {
+              $event_overwrite = true;
+            }else {
+              $event_overwrite = false;
+            }
             /* fetch associative array */
             while ($row = $result->fetch_assoc()) {
               $tableRows  += 1;
@@ -179,7 +186,12 @@
                   <?php if ($memberCount < 1) {goto col2;} ?>
                   <select class="member1" name="member1_<?php echo $indexCount;?>" id="eventSubmit">
                     <option value="database"><?php echo $member_01;?></option>
-                    <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                    <?php
+                    if (($event_overwrite == true) || (strlen($member_01) == 0)) { ?>
+                        <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                      <?php
+                    }
+                     ?>
                   </select>
                   <?php col2: ?>
                 </td>
@@ -187,7 +199,12 @@
                   <?php if ($memberCount < 2) {goto col3;} ?>
                   <select class="member2" name="member2_<?php echo $indexCount;?>" id="eventSubmit">
                     <option value="database"><?php echo $member_02;?></option>
-                    <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                    <?php
+                    if (($event_overwrite == true) || (strlen($member_02) == 0)) { ?>
+                        <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                      <?php
+                    }
+                     ?>
                   </select>
                   <?php col3: ?>
                 </td>
@@ -195,7 +212,12 @@
                   <?php if ($memberCount < 3) {goto col4;} ?>
                   <select class="member3" name="member3_<?php echo $indexCount;?>" id="eventSubmit">
                     <option value="database"><?php echo $member_03;?></option>
-                    <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                    <?php
+                    if (($event_overwrite == true) || (strlen($member_03) == 0)) { ?>
+                        <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                      <?php
+                    }
+                     ?>
                   </select>
                   <?php col4: ?>
                 </td>
@@ -203,7 +225,12 @@
                   <?php if ($memberCount < 4) {goto col5;} ?>
                   <select class="member4" name="member4_<?php echo $indexCount;?>" id="eventSubmit">
                     <option value="database"><?php echo $member_04;?></option>
-                    <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                    <?php
+                    if (($event_overwrite == true) || (strlen($member_04) == 0)) { ?>
+                        <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                      <?php
+                    }
+                     ?>
                   </select>
                   <?php col5: ?>
                 </td>
@@ -211,12 +238,17 @@
                   <?php if ($memberCount < 5) {goto endOfTable;} ?>
                   <select class="member5" name="member5_<?php echo $indexCount;?>" id="eventSubmit">
                     <option value="database"><?php echo $member_05;?></option>
-                    <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                    <?php
+                    if (($event_overwrite == true) || (strlen($member_05) == 0)) { ?>
+                        <option value="changeEntry"><?php echo $_SESSION["username"];?></option>
+                      <?php
+                    }
+                     ?>
                   </select>
                 <?php endOfTable: ?>
                 </td>
                 <td>
-                  Progressbar
+                  <!--Progressbar-->
                 </td>
               </tr>
               <?php
