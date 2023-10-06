@@ -26,7 +26,7 @@
     $tableRows = mysqli_num_rows($result);
 
     // Display result
-    printf("Total rows in this table :  %d\n", $tableRows);
+    //printf("Total rows in this table :  %d\n", $tableRows);
   }
 
   $memberContent = array();
