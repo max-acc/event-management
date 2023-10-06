@@ -272,7 +272,7 @@
                 <?php endOfTable: ?>
                 </td>
                 <td>
-                  Progressbar
+                  <!--Progressbar-->
                 </td>
               </tr>
               <?php
